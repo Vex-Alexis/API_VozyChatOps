@@ -4,6 +4,7 @@ using QuestPDF.Helpers;
 using Newtonsoft.Json;
 using System.Text;
 using API_VozyChatOps.Models;
+using QuestPDF.Previewer;
 
 namespace API_VozyChatOps.Services
 {
@@ -40,11 +41,12 @@ namespace API_VozyChatOps.Services
                         .Height(152)
                         .Background("#1f2936")
                         .Row(row => {
-                            row.ConstantItem(255)
-                                .Placeholder();
+                            //row.ConstantItem(255)
+                                //.Image("assets/log1.png");
 
                             row.RelativeItem()
                                 .PaddingVertical(16)
+                                .PaddingHorizontal(72)
                                 .Column(col =>
                                 {
                                     col.Item().Height(35)//.Background("#f44")
@@ -58,7 +60,7 @@ namespace API_VozyChatOps.Services
                                     col.Item().Height(34)//.Background("#f44")
                                                          //.Text("TÉCNICA PROFESIONAL")
                                     .AlignCenter()
-                                    .Text("TÉCNICA PROFESIONAL EN ELABORACIÓN DE VESTUARIO Y PATRONAJE")
+                                    .Text($"{schedules[0].NOM_UNIDAD}")
                                     .LineHeight(1f)
                                     .FontSize(14)
                                     .FontColor("#fff");
@@ -68,7 +70,7 @@ namespace API_VozyChatOps.Services
                                     .Text(txt =>
                                     {
                                         txt.Span("Estudiante: ").SemiBold().FontSize(14).FontColor("#91dc00");
-                                        txt.Span("Johan Alexis Chavarria Bustos").FontSize(14).FontColor("#fff");
+                                        txt.Span($"{schedules[0].NOM_LARGO}").FontSize(14).FontColor("#fff");
                                     });
 
 
@@ -76,7 +78,7 @@ namespace API_VozyChatOps.Services
                                     .Text(txt =>
                                     {
                                         txt.Span("Documento: ").SemiBold().FontSize(14).FontColor("#91dc00");
-                                        txt.Span("1233499868").FontSize(14).FontColor("#fff");
+                                        txt.Span($"{schedules[0].NUM_IDENTIFICACION}").FontSize(14).FontColor("#fff");
                                     });
                                     //Quedan sobrando dos puntos
                                 });
@@ -146,7 +148,7 @@ namespace API_VozyChatOps.Services
                                     table.Cell().BorderBottom(0.5f).BorderColor("#fff")
                                     .Padding(5)
                                     .AlignMiddle()
-                                    .Padding(2).Text($"{clase.NOM_MATERIA}").FontSize(12);
+                                    .Padding(2).Text($"{clase.NOM_AULA}").FontSize(12);
                                 }
                             });
                         });
@@ -161,6 +163,8 @@ namespace API_VozyChatOps.Services
                         .Text("© 2024 CUN: Corporación Unificada Nacional de Educación Superior");
                     });
                 });
+                    
+                //document.ShowInPreviewer();
                 document.GeneratePdf(memoryStream);
 
                 // Convertir el contenido del MemoryStream en un array de bytes
