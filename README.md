@@ -8,18 +8,13 @@ Este API proporciona funcionalidades para validar la actividad de un estudiante 
 - [Requisitos](#requisitos)
 - [Instalación](#instalación)
 - [Endpoints](#Endpoints)
-- [Uso](#uso)
-- [Ejemplos](#ejemplos)
-- [Documentación](#documentación)
-- [Contribución](#contribución)
-- [Licencia](#licencia)
 
 <br> <!-- Este es un salto de línea -->
 
 ## Requisitos
 Asegúrate de tener instaladas las siguientes tecnologías antes de comenzar:
--.NET 6.0
--SQL Server
+- .NET 6.0
+- SQL Server
 
 <br> <!-- Este es un salto de línea -->
 
