@@ -29,10 +29,10 @@ Para llevar a cabo la publicación de la API en el servidor FTP, se necesitan lo
 - Nombre usuario
 - Contraseña
 
-#### Servidor FTP
+- #### Servidor FTP
 Proporcione la dirección IP o el nombre de dominio del servidor FTP al que se conectará para subir los archivos.
 
-#### Ruta de Acceso al Sitio
+### Ruta de Acceso al Sitio
 Indique la ruta específica en el servidor FTP donde desea alojar la aplicación. Puede ser un directorio específico, como "/httpdocs".
 
 #### Dirección URL de Destino:
