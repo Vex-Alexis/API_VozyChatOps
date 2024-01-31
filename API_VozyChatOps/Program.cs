@@ -3,6 +3,9 @@ using API_VozyChatOps.Repositories.Implementations;
 using API_VozyChatOps.Repositories.Interfaces;
 using API_VozyChatOps.Services;
 using Microsoft.EntityFrameworkCore;
+using QuestPDF.Infrastructure;
+
+QuestPDF.Settings.License = LicenseType.Community;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +19,7 @@ builder.Services.AddSwaggerGen();
 // Inyeccion de dependencias
 builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
 builder.Services.AddScoped<ScheduleService>();
+builder.Services.AddScoped<PDFGenerationService>();
 
 builder.Services.AddDbContext<AppDBContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Desarrollo")));

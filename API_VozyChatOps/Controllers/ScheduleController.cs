@@ -12,10 +12,12 @@ namespace API_VozyChatOps.Controllers
     public class ScheduleController : ControllerBase
     {
         private readonly ScheduleService _scheduleService;
+        private readonly PDFGenerationService _pDFGenerationService;
 
-        public ScheduleController(ScheduleService scheduleService)
+        public ScheduleController(ScheduleService scheduleService, PDFGenerationService pDFGenerationService)
         {
             _scheduleService = scheduleService;
+            _pDFGenerationService = pDFGenerationService;
         }
 
         [HttpPost("query")]
@@ -48,13 +50,11 @@ namespace API_VozyChatOps.Controllers
                 return BadRequest(new { Status = false, Code = HttpStatusCode.NotFound, Messagge = "Número de identificación no válido." });
             }
 
-            var schedules = await _scheduleService.GetSchedulesByNumIdentificacionAsync(numIdentificacion);
 
-            if (schedules == null || schedules.Count == 0)
-            {
-                return NotFound(new { Status = false, Code = HttpStatusCode.NotFound, Messagge = $"No se encontro horario para el estudiante: {numIdentificacion}" });
-            }
-            return Ok(new { Status = true, Code = HttpStatusCode.OK, Message = "Horario generado con exito", schedules });
+            var pdfBase64 = await _pDFGenerationService.GeneratePdfAsync(numIdentificacion);
+
+            
+            return Ok(new { Status = true, Code = HttpStatusCode.OK, Message = "Horario generado con exito", pdfBase64 });
 
         }
 
