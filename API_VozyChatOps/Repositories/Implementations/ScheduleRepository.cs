@@ -17,9 +17,17 @@ namespace API_VozyChatOps.Repositories.Implementations
 
         public async Task<List<ScheduleModel>> GetByNumIdentificacionAsync(string numIdentificacion)
         {
-            return await _context.Horarios
-                .Where(h => h.NUM_IDENTIFICACION == numIdentificacion)
-                .ToListAsync();
+            var schedule = await _context.Horarios
+               .Where(h => h.NUM_IDENTIFICACION == numIdentificacion)
+               .ToListAsync();
+
+            //var schedule = await _context.Horarios
+            //    .FromSqlRaw($"SELECT * FROM CUN.Horarios WHERE NUM_IDENTIFICACION = {numIdentificacion}")
+            //    .ToListAsync();
+
+
+            return schedule;
+
         }
 
 

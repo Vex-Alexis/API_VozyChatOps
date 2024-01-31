@@ -15,8 +15,10 @@ namespace API_VozyChatOps.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ScheduleModel>()
-                .HasKey(s => new { s.NUM_IDENTIFICACION }); // Clave primaria compuesta
+            //modelBuilder.Entity<ScheduleModel>()
+            //.HasKey(s => new { s.NUM_IDENTIFICACION }); // Clave primaria compuesta
+            modelBuilder.Entity<ScheduleModel>().HasNoKey();
+
 
             // Otras configuraciones
 
