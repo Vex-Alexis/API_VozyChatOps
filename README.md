@@ -24,24 +24,24 @@ Asegúrate de tener instaladas las siguientes tecnologías antes de comenzar:
 Para llevar a cabo la publicación de la API en el servidor FTP, se necesitan los siguientes detalles de configuración:
 
 - Servidor 
-- ruta de acceso al sitio
+- Ruta de acceso al sitio
 - Direccion URL de destino
 - Nombre usuario
-- contraseña
+- Contraseña
 
-### Servidor FTP
+#### Servidor FTP
 Proporcione la dirección IP o el nombre de dominio del servidor FTP al que se conectará para subir los archivos.
 
-### Ruta de Acceso al Sitio
+#### Ruta de Acceso al Sitio
 Indique la ruta específica en el servidor FTP donde desea alojar la aplicación. Puede ser un directorio específico, como "/httpdocs".
 
-### Dirección URL de Destino:
+#### Dirección URL de Destino:
 Proporcione la URL completa de la aplicación después de ser desplegada. Ejemplo: "http://www.ejemplo.com/api".
 
-### Nombre de Usuario
+#### Nombre de Usuario
 Proporcione el nombre de usuario que se utilizará para autenticarse en el servidor FTP y cargar los archivos.
 
-### Contraseña
+#### Contraseña
 Proporcione la contraseña correspondiente al nombre de usuario para la autenticación en el servidor FTP.
 
 <br> <!-- Este es un salto de línea -->
