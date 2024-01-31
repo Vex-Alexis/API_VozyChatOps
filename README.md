@@ -36,10 +36,10 @@ La API estará disponible en https://localhost:7000/api/schedule
 ## Endpoints
 
 ### Validar Estudiante Activo
--Endpoint: /api/schedule/query
--Método HTTP: POST
--Descripción: Endpoint para validar si un estudiante está activo.
--Cuerpo de la Solicitud: 
+- Endpoint: /api/schedule/query
+- Método HTTP: POST
+- Descripción: Endpoint para validar si un estudiante está activo.
+- Cuerpo de la Solicitud: 
 ```bash
 {
     "NUM_IDENTIFICACION" : "1045702044"
@@ -47,10 +47,10 @@ La API estará disponible en https://localhost:7000/api/schedule
 ```
 
 ### Validar Estudiante Activo
--Endpoint: /api/schedule/generate-pdf
--Método HTTP: POST
--Descripción: Endpoint para generar el PDF del horario del estudiante en formato BASE64.
--Cuerpo de la Solicitud: 
+- Endpoint: /api/schedule/generate-pdf
+- Método HTTP: POST
+- Descripción: Endpoint para generar el PDF del horario del estudiante en formato BASE64.
+- Cuerpo de la Solicitud: 
 ```bash
 {
     "NUM_IDENTIFICACION" : "1045702044"
