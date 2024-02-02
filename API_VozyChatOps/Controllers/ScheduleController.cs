@@ -20,9 +20,9 @@ namespace API_VozyChatOps.Controllers
             _pDFGenerationService = pDFGenerationService;
         }
 
-        [HttpGet("query")]
         //public async Task<ActionResult<List<ScheduleModel>>> GetSchedulesByNumIdentificacion([FromBody] ScheduleRequestDTO scheduleRequestDTO)
-        public async Task<ActionResult<List<ScheduleModel>>> GetSchedulesByNumIdentificacion([FromQuery] string numIdentificacion)
+        [HttpGet("query/{numIdentificacion}")]
+        public async Task<ActionResult<List<ScheduleModel>>> GetSchedulesByNumIdentificacion(string numIdentificacion)
             
         {
             //var numIdentificacion = scheduleRequestDTO.NUM_IDENTIFICACION;
