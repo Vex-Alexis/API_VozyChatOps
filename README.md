@@ -6,6 +6,7 @@ Este API proporciona funcionalidades para validar la actividad de un estudiante 
 ## Tabla de Contenidos
 
 - [Requisitos](#requisitos)
+- [Publicar](#Publicar)
 - [Instalación](#instalación)
 - [Endpoints](#Endpoints)
 
@@ -15,6 +16,33 @@ Este API proporciona funcionalidades para validar la actividad de un estudiante 
 Asegúrate de tener instaladas las siguientes tecnologías antes de comenzar:
 - .NET 6.0
 - SQL Server
+
+<br> <!-- Este es un salto de línea -->
+
+## Publicar
+### Configuración para Publicar en Servidor FTP
+Para llevar a cabo la publicación de la API en el servidor FTP, se necesitan los siguientes detalles de configuración:
+
+- Servidor 
+- Ruta de acceso al sitio
+- Direccion URL de destino
+- Nombre usuario
+- Contraseña
+
+### Servidor FTP
+Proporcione la dirección IP o el nombre de dominio del servidor FTP al que se conectará para subir los archivos.
+
+### Ruta de Acceso al Sitio
+Indique la ruta específica en el servidor FTP donde desea alojar la aplicación. Puede ser un directorio específico, como "/httpdocs".
+
+### Dirección URL de Destino:
+Proporcione la URL completa de la aplicación después de ser desplegada. Ejemplo: "http://www.ejemplo.com/api".
+
+### Nombre de Usuario
+Proporcione el nombre de usuario que se utilizará para autenticarse en el servidor FTP y cargar los archivos.
+
+### Contraseña
+Proporcione la contraseña correspondiente al nombre de usuario para la autenticación en el servidor FTP.
 
 <br> <!-- Este es un salto de línea -->
 
