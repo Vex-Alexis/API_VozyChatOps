@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Text;
 using API_VozyChatOps.Models;
 using QuestPDF.Previewer;
+using System.Security.Cryptography;
 
 namespace API_VozyChatOps.Services
 {
@@ -41,12 +42,12 @@ namespace API_VozyChatOps.Services
                         .Height(152)
                         .Background("#1f2936")
                         .Row(row => {
-                            //row.ConstantItem(255)
-                                //.Image("assets/log1.png");
+                            row.ConstantItem(255)
+                                .Image("assets/log1.png");
 
                             row.RelativeItem()
                                 .PaddingVertical(16)
-                                .PaddingHorizontal(72)
+                                .PaddingHorizontal(2)
                                 .Column(col =>
                                 {
                                     col.Item().Height(35)//.Background("#f44")
@@ -67,20 +68,44 @@ namespace API_VozyChatOps.Services
 
 
                                     col.Item().Height(25)//.Background("#f44")
-                                    .Text(txt =>
-                                    {
-                                        txt.Span("Estudiante: ").SemiBold().FontSize(14).FontColor("#91dc00");
-                                        txt.Span($"{schedules[0].NOM_LARGO}").FontSize(14).FontColor("#fff");
+                                    .Row(row => {
+                                        row.RelativeItem(3)
+                                        .Text(txt =>
+                                        {
+                                            txt.Span("Cód.Programa: ").SemiBold().FontSize(14).FontColor("#91dc00");
+                                            txt.Span($"1TC57").FontSize(14).FontColor("#fff");
+
+                                        });
+
+                                        row.RelativeItem(7)
+                                        .Text(txt =>
+                                        {
+                                            txt.Span("Estudiante: ").SemiBold().FontSize(14).FontColor("#91dc00");
+                                            txt.Span($"{schedules[0].NOM_LARGO}").FontSize(14).FontColor("#fff");
+                                        });
+
                                     });
+
+
 
 
                                     col.Item().Height(25)//.Background("#f44");
-                                    .Text(txt =>
-                                    {
-                                        txt.Span("Documento: ").SemiBold().FontSize(14).FontColor("#91dc00");
-                                        txt.Span($"{schedules[0].NUM_IDENTIFICACION}").FontSize(14).FontColor("#fff");
+                                    .Row(row => {
+                                        row.RelativeItem(3)
+                                        .Text(txt =>
+                                        {
+                                            txt.Span("Cód.Pensum: ").SemiBold().FontSize(14).FontColor("#91dc00");
+                                            txt.Span($"5031D").FontSize(14).FontColor("#fff");
+
+                                        });
+
+                                        row.RelativeItem(7)
+                                        .Text(txt =>
+                                        {
+                                            txt.Span("Documento: ").SemiBold().FontSize(14).FontColor("#91dc00");
+                                            txt.Span($"{schedules[0].NUM_IDENTIFICACION}").FontSize(14).FontColor("#fff");
+                                        });
                                     });
-                                    //Quedan sobrando dos puntos
                                 });
                         });
 
@@ -96,9 +121,13 @@ namespace API_VozyChatOps.Services
                             {
                                 table.ColumnsDefinition(columns =>
                                 {
-                                    columns.RelativeColumn();
+                                    //columns.RelativeColumn();
                                     columns.RelativeColumn(2);
                                     columns.RelativeColumn();
+                                    columns.RelativeColumn();
+                                    columns.RelativeColumn();
+                                    columns.RelativeColumn();
+
                                     columns.RelativeColumn();
                                     columns.RelativeColumn();
                                     columns.RelativeColumn();
@@ -106,12 +135,17 @@ namespace API_VozyChatOps.Services
 
                                 table.Header(header =>
                                 {
-                                    header.Cell().Background("#1f2936").Padding(5).Text("Código Materia").FontColor("#fff").FontSize(14);
+                                    //header.Cell().Background("#1f2936").Padding(5).Text("Código Materia").FontColor("#fff").FontSize(14);
                                     header.Cell().Background("#1f2936").Padding(5).Text("Nombre Materia").FontColor("#fff").FontSize(14);
                                     header.Cell().Background("#1f2936").Padding(5).Text("Día").FontColor("#fff").FontSize(14);
                                     header.Cell().Background("#1f2936").Padding(5).Text("Hora inicial").FontColor("#fff").FontSize(14);
                                     header.Cell().Background("#1f2936").Padding(5).Text("Hora final").FontColor("#fff").FontSize(14);
                                     header.Cell().Background("#1f2936").Padding(5).Text("Aula").FontColor("#fff").FontSize(14);
+
+                                    header.Cell().Background("#1f2936").Padding(5).Text("Docente").FontColor("#fff").FontSize(14);
+                                    header.Cell().Background("#1f2936").Padding(5).Text("Fecha inicio").FontColor("#fff").FontSize(14);
+                                    header.Cell().Background("#1f2936").Padding(5).Text("Fecha final").FontColor("#fff").FontSize(14);
+
                                 });
 
                                 //List<ScheduleModel> scheduleList = JsonConvert.DeserializeObject<List<ScheduleModel>>(schedules); ;
@@ -119,11 +153,22 @@ namespace API_VozyChatOps.Services
 
                                 foreach (var clase in schedules)
                                 {
-                                    table.Cell().BorderBottom(0.5f).BorderColor("#fff")
-                                    .Padding(5)
-                                    .AlignMiddle()
-                                    .Padding(2).Text($"{clase.COD_MATERIA}").FontSize(12);
-                                    //.Padding(2).Text($"TÉCNICA PROFESIONAL EN ELABORACIÓN DE VESTUARIO Y PATRONAJE").FontSize(10);
+                                    string COD_MATERIA = "";
+                                    string NOM_MATERIA = "";
+                                    string DIA = "";
+                                    string HORA_INICIAL = "";
+                                    string HORA_FINAL = "";
+                                    string NOM_AULA = "";
+                                    string NOM_DOCENTE = "";
+                                    string FEC_INI_PROGRAMACION = "";
+                                    string FEC_FIN_PROGRAMACION = "";
+
+
+                                    //table.Cell().BorderBottom(0.5f).BorderColor("#fff")
+                                    //.Padding(5)
+                                    //.AlignMiddle()
+                                    //.Padding(2).Text($"{clase.COD_MATERIA}").FontSize(12);                                  
+
 
                                     table.Cell().BorderBottom(0.5f).BorderColor("#fff")
                                     .Padding(5)
@@ -149,12 +194,25 @@ namespace API_VozyChatOps.Services
                                     .Padding(5)
                                     .AlignMiddle()
                                     .Padding(2).Text($"{clase.NOM_AULA}").FontSize(12);
+
+
+                                    table.Cell().BorderBottom(0.5f).BorderColor("#fff")
+                                    .Padding(5)
+                                    .AlignMiddle()
+                                    .Padding(2).Text($"{clase.NOM_DOCENTE}").FontSize(12);
+
+                                    table.Cell().BorderBottom(0.5f).BorderColor("#fff")
+                                    .Padding(5)
+                                    .AlignMiddle()
+                                    .Padding(2).Text($"{clase.FEC_INI_PROGRAMACION?.ToString("yyyy-MM-dd")}").FontSize(12);
+
+                                    table.Cell().BorderBottom(0.5f).BorderColor("#fff")
+                                    .Padding(5)
+                                    .AlignMiddle()
+                                    .Padding(2).Text($"{clase.FEC_FIN_PROGRAMACION?.ToString("yyyy-MM-dd")}").FontSize(12);
                                 }
                             });
                         });
-
-
-
 
 
                         // ## FOOTER ##
@@ -164,8 +222,8 @@ namespace API_VozyChatOps.Services
                     });
                 });
                     
-                //document.ShowInPreviewer();
-                document.GeneratePdf(memoryStream);
+                document.ShowInPreviewer();
+                //document.GeneratePdf(memoryStream);
 
                 // Convertir el contenido del MemoryStream en un array de bytes
                 var pdfBytes = memoryStream.ToArray();
