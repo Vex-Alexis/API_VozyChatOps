@@ -32,11 +32,11 @@ namespace API_VozyChatOps.Security.Controllers
             }
 
             // Autenticar al usuario
-            var isAuthenticated = _authService.AuthenticateUser(loginUserDTO);
+            var (isAuthenticated, token) = _authService.AuthenticateUser(loginUserDTO);
 
             if (isAuthenticated)
             {
-                return Ok(new { Status = true, Message = "Authentication successful", Token = "El token JWT"});
+                return Ok(new { Status = true, Message = "Authentication successful", Token = token });
             }
 
             return Unauthorized(new { Status = false, Message = "Invalid credentials" });

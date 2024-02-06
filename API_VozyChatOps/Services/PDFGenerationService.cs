@@ -153,15 +153,15 @@ namespace API_VozyChatOps.Services
 
                                 foreach (var clase in schedules)
                                 {
-                                    string COD_MATERIA = "";
-                                    string NOM_MATERIA = "";
-                                    string DIA = "";
-                                    string HORA_INICIAL = "";
-                                    string HORA_FINAL = "";
-                                    string NOM_AULA = "";
-                                    string NOM_DOCENTE = "";
-                                    string FEC_INI_PROGRAMACION = "";
-                                    string FEC_FIN_PROGRAMACION = "";
+                                    //string COD_MATERIA = "";
+                                    //string NOM_MATERIA = "";
+                                    //string DIA = "";
+                                    //string HORA_INICIAL = "";
+                                    //string HORA_FINAL = "";
+                                    //string NOM_AULA = "";
+                                    //string NOM_DOCENTE = "";
+                                    //string FEC_INI_PROGRAMACION = "";
+                                    //string FEC_FIN_PROGRAMACION = "";
 
 
                                     //table.Cell().BorderBottom(0.5f).BorderColor("#fff")

@@ -1,6 +1,7 @@
 ﻿using API_VozyChatOps.DTOs;
 using API_VozyChatOps.Models;
 using API_VozyChatOps.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -21,6 +22,8 @@ namespace API_VozyChatOps.Controllers
         }
 
         //public async Task<ActionResult<List<ScheduleModel>>> GetSchedulesByNumIdentificacion([FromBody] ScheduleRequestDTO scheduleRequestDTO)
+
+        [Authorize]
         [HttpGet("query/{numIdentificacion}")]
         public async Task<ActionResult<List<ScheduleModel>>> GetSchedulesByNumIdentificacion(string numIdentificacion)
             
@@ -42,6 +45,7 @@ namespace API_VozyChatOps.Controllers
             
         }
 
+        [Authorize]
         [HttpPost("generate-pdf")]
         public async Task<ActionResult<List<ScheduleModel>>> GetPDFSchedulesByNumIdentificacion([FromBody] ScheduleRequestDTO scheduleRequestDTO)
         {
