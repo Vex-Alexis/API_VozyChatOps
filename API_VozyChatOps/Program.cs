@@ -1,6 +1,8 @@
 using API_VozyChatOps.Data;
 using API_VozyChatOps.Repositories.Implementations;
 using API_VozyChatOps.Repositories.Interfaces;
+using API_VozyChatOps.Security.Repositories;
+using API_VozyChatOps.Security.Services;
 using API_VozyChatOps.Services;
 using Microsoft.EntityFrameworkCore;
 using QuestPDF.Infrastructure;
@@ -22,6 +24,9 @@ builder.Services.AddScoped<ScheduleService>();
 builder.Services.AddScoped<PDFGenerationService>();
 builder.Services.AddScoped<ResetPasswordService>();
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<AuthRepository>();
+builder.Services.AddScoped<AuthService>();
+
 
 
 builder.Services.AddDbContext<AppDBContext>(options =>

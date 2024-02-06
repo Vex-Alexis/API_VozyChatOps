@@ -222,8 +222,8 @@ namespace API_VozyChatOps.Services
                     });
                 });
                     
-                document.ShowInPreviewer();
-                //document.GeneratePdf(memoryStream);
+                //document.ShowInPreviewer();
+                document.GeneratePdf(memoryStream);
 
                 // Convertir el contenido del MemoryStream en un array de bytes
                 var pdfBytes = memoryStream.ToArray();
