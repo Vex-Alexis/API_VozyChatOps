@@ -55,7 +55,7 @@ namespace API_VozyChatOps.Security.Services
             var securityToken = new JwtSecurityToken(
                 claims: claims,
                 //expires: null,
-                expires: DateTime.UtcNow.AddSeconds(30),
+                expires: DateTime.Now.AddDays(1),
                 signingCredentials: credentials
                 );
 
