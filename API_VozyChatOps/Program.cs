@@ -20,6 +20,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
 builder.Services.AddScoped<ScheduleService>();
 builder.Services.AddScoped<PDFGenerationService>();
+builder.Services.AddScoped<ResetPasswordService>();
+builder.Services.AddHttpClient();
+
 
 builder.Services.AddDbContext<AppDBContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Desarrollo")));
