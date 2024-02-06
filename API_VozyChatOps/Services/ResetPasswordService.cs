@@ -30,7 +30,7 @@ namespace API_VozyChatOps.Services
                 if (response.IsSuccessStatusCode)
                 {
                     // Aquí puedes procesar la respuesta si es necesario
-                    return "Solicitud de restablecimiento de contraseña enviada con éxito.";
+                    return "Solicitud de restablecimiento de contraseña realizada con éxito.";
                 }
                 else
                 {
