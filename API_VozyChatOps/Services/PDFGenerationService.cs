@@ -43,7 +43,7 @@ namespace API_VozyChatOps.Services
                         .Background("#1f2936")
                         .Row(row => {
                             row.ConstantItem(255)
-                                .Image("assets/log1.png");
+                                .Image("wwwroot/log1.png");
 
                             row.RelativeItem()
                                 .PaddingVertical(16)
