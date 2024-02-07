@@ -49,19 +49,26 @@ namespace API_VozyChatOps.Controllers
         [HttpPost("generate-pdf")]
         public async Task<ActionResult<List<ScheduleModel>>> GetPDFSchedulesByNumIdentificacion([FromBody] ScheduleRequestDTO scheduleRequestDTO)
         {
-            var numIdentificacion = scheduleRequestDTO.NUM_IDENTIFICACION;
-
-            if(numIdentificacion == null)
+            try
             {
-                return BadRequest(new { Status = false, Code = HttpStatusCode.NotFound, Messagge = "Número de identificación no válido." });
+                if (!ModelState.IsValid || string.IsNullOrEmpty(scheduleRequestDTO.NUM_IDENTIFICACION))
+                {
+                    return BadRequest(new { Status = false, Code = HttpStatusCode.BadRequest, Message = "Número de identificación no válido.", Errors = ModelState.Values.SelectMany(v => v.Errors) });
+                }
+
+                var numIdentificacion = scheduleRequestDTO.NUM_IDENTIFICACION;
+
+                // Generar el PDF
+                var pdfBase64 = await _pDFGenerationService.GeneratePdfAsync(numIdentificacion);
+
+                // Retornar la respuesta exitosa con el PDF
+                return Ok(new { Status = true, Code = HttpStatusCode.OK, Message = "Horario generado con éxito", PdfBase64 = pdfBase64 });
             }
-
-
-            var pdfBase64 = await _pDFGenerationService.GeneratePdfAsync(numIdentificacion);
-
-            
-            return Ok(new { Status = true, Code = HttpStatusCode.OK, Message = "Horario generado con exito", pdfBase64 });
-
+            catch (Exception ex)
+            {
+                // Manejar otras excepciones
+                return StatusCode(500, new { Status = false, Code = HttpStatusCode.InternalServerError, Message = $"Error interno del servidor: {ex.Message}" });
+            }
         }
 
 

@@ -36,10 +36,10 @@ namespace API_VozyChatOps.Security.Controllers
 
             if (isAuthenticated)
             {
-                return Ok(new { Status = true, Message = "Authentication successful", Token = token });
+                return Ok(new { Status = true, Message = "Autenticación exitosa", Token = token });
             }
 
-            return Unauthorized(new { Status = false, Message = "Invalid credentials" });
+            return Unauthorized(new { Status = false, Message = "Credenciales inválidas" });
         }
     }
 }
