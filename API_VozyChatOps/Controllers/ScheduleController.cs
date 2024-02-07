@@ -61,6 +61,12 @@ namespace API_VozyChatOps.Controllers
                 // Generar el PDF
                 var pdfBase64 = await _pDFGenerationService.GeneratePdfAsync(numIdentificacion);
 
+                if (pdfBase64 == null)
+                {
+                    // Si el estudiante no existe o no tiene horario asignado, responder con un mensaje adecuado
+                    return NotFound(new { Status = false, Code = HttpStatusCode.NotFound, Message = "Estudiante no encontrado o no tiene horario asignado." });
+                }
+
                 // Retornar la respuesta exitosa con el PDF
                 return Ok(new { Status = true, Code = HttpStatusCode.OK, Message = "Horario generado con éxito", PdfBase64 = pdfBase64 });
             }

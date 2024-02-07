@@ -22,6 +22,11 @@ namespace API_VozyChatOps.Services
         {
             var schedules = await _scheduleService.GetSchedulesByNumIdentificacionAsync(numIdentificacion);
 
+            if (schedules == null || schedules.Count == 0)
+            {
+                return null;
+            }
+
 
             using (var memoryStream = new MemoryStream())
             {
