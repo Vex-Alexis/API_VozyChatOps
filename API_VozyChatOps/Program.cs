@@ -29,6 +29,8 @@ builder.Services.AddScoped<ResetPasswordService>();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<AuthRepository>();
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<IEstadisticaEstudianteRepository, EstadisticaEstudianteRepository>();
+builder.Services.AddScoped<EstadisticaEstudiantesService>();
 
 
 builder.Services.AddDbContext<AppDBContext>(options =>

@@ -53,7 +53,7 @@ namespace API_VozyChatOps.Controllers
             {
                 if (!ModelState.IsValid || string.IsNullOrEmpty(scheduleRequestDTO.NUM_IDENTIFICACION))
                 {
-                    return BadRequest(new { Status = false, Code = HttpStatusCode.BadRequest, Message = "Número de identificación no válido.", Errors = ModelState.Values.SelectMany(v => v.Errors) });
+                    return BadRequest(new { Status = false, Code = HttpStatusCode.BadRequest, Message = "Número de identificación no válido o vacio." });
                 }
 
                 var numIdentificacion = scheduleRequestDTO.NUM_IDENTIFICACION;

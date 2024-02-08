@@ -11,6 +11,8 @@ namespace API_VozyChatOps.Data
         }
 
         public DbSet<ScheduleModel> Horarios { get; set; }
+        public DbSet<EstadisticaEstudianteModel> EstadisticaEstudiantes { get; set; }
+        public DbSet<MatrizCalendarioModel> MatrizCalendarios { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -18,7 +20,8 @@ namespace API_VozyChatOps.Data
             //modelBuilder.Entity<ScheduleModel>()
             //.HasKey(s => new { s.NUM_IDENTIFICACION }); // Clave primaria compuesta
             modelBuilder.Entity<ScheduleModel>().HasNoKey();
-
+            modelBuilder.Entity<EstadisticaEstudianteModel>().HasNoKey();
+            modelBuilder.Entity<MatrizCalendarioModel>().HasNoKey();
 
             // Otras configuraciones
 
