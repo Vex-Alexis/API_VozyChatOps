@@ -32,6 +32,10 @@ namespace API_VozyChatOps.Services
                     // Aquí puedes procesar la respuesta si es necesario
                     return "Restablecimiento de contraseña realizada con éxito.";
                 }
+                if (response.IsSuccessStatusCode == false)
+                {
+                    return $"No se encontró un correo personal asociado a {email}. No fue posible enviar las nuevas credenciales.";
+                }
                 else
                 {
                     // Manejar el caso en que la solicitud no sea exitosa
