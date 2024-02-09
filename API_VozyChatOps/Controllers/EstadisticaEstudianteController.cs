@@ -1,12 +1,14 @@
 ﻿using API_VozyChatOps.DTOs;
 using API_VozyChatOps.Models;
 using API_VozyChatOps.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace API_VozyChatOps.Controllers
 {
+    [Authorize]
     [Route("api")]
     [ApiController]
     public class EstadisticaEstudianteController : ControllerBase
