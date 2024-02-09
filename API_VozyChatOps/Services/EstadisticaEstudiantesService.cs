@@ -1,4 +1,6 @@
-﻿using API_VozyChatOps.Repositories.Implementations;
+﻿using API_VozyChatOps.DTOs;
+using API_VozyChatOps.Models;
+using API_VozyChatOps.Repositories.Implementations;
 using API_VozyChatOps.Repositories.Interfaces;
 
 namespace API_VozyChatOps.Services
@@ -11,6 +13,16 @@ namespace API_VozyChatOps.Services
         {
             _estadisticaEstudianteRepository = estadisticaEstudianteRepository;
         }
+
+        public async Task<EstudianteActivoResponseDTO> ObtenerEstudiantesActivosPorIdentificacion(EstudianteActivoRequestDTO estudianteActivoRequestDTO)
+        {
+
+            EstudianteActivoResponseDTO estudiante = await _estadisticaEstudianteRepository.ObtenerEstudiantesActivosPorIdentificacion(estudianteActivoRequestDTO);
+
+            return estudiante;
+        }
+
+
 
         public int ObtenerCantidadEstudiantesActivos()
         {

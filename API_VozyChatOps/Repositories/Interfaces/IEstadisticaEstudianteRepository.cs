@@ -1,10 +1,11 @@
-﻿using API_VozyChatOps.Models;
+﻿using API_VozyChatOps.DTOs;
+using API_VozyChatOps.Models;
 
 namespace API_VozyChatOps.Repositories.Interfaces
 {
     public interface IEstadisticaEstudianteRepository
     {
-        Task<EstadisticaEstudianteModel> GetEstadisticaEstudiante(string numIdentificacion);
+        public Task<EstudianteActivoResponseDTO> ObtenerEstudiantesActivosPorIdentificacion(EstudianteActivoRequestDTO estudianteActivoRequestDTO);
 
         //public int ObtenerCantidadEstudiantesActivos();
 

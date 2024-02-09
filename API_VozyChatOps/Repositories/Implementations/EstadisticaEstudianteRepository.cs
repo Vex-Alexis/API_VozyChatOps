@@ -1,4 +1,5 @@
 ﻿using API_VozyChatOps.Data;
+using API_VozyChatOps.DTOs;
 using API_VozyChatOps.Models;
 using API_VozyChatOps.Repositories.Interfaces;
 using Microsoft.Data.SqlClient;
@@ -16,51 +17,60 @@ namespace API_VozyChatOps.Repositories.Implementations
             _context = context;
         }
 
-        public async Task<EstadisticaEstudianteModel> GetEstadisticaEstudiante(string numIdentificacion)
+        public async Task<EstudianteActivoResponseDTO> ObtenerEstudiantesActivosPorIdentificacion(EstudianteActivoRequestDTO estudianteActivoRequestDTO)
         {
-            var fechaActual = DateTime.Now.Date;
+            EstudianteActivoResponseDTO estudiante = null;
 
-            var query = from ee in _context.EstadisticaEstudiantes
-                        join mc in _context.MatrizCalendarios
-                            on ee.COD_PERIODO equals mc.PERIODO
-                        where DateTime.ParseExact(mc.FI_CLASE, "dd/MM/yyyy", CultureInfo.InvariantCulture) < fechaActual
-                            && DateTime.ParseExact(mc.FF_CLASE, "dd/MM/yyyy", CultureInfo.InvariantCulture) > fechaActual
-                            && ee.ESTADO_ALUMNO == "1-Activo"
-                            && ee.NUM_IDENTIFICACION == numIdentificacion
-                        select new EstadisticaEstudianteModel
+            // Cadena de conexión a tu base de datos
+            string connectionString = "Server=172.16.1.33;Database=CUN_REPOSITORIO;User=vozy_chat_api;Password=4n4lyt1cs2024*;Encrypt=True;TrustServerCertificate=True;";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = @"
+                    SELECT *
+                    FROM CUN.ESTADISTICA_ESTUDIANTE_2 AS ee
+                    INNER JOIN (
+                        SELECT PERIODO
+                        FROM CUN.MATRIZ_CALENDARIO
+                        WHERE CONVERT(date, FI_CLASE, 103) < GETDATE()
+                            AND CONVERT(date, FF_CLASE, 103) > GETDATE()
+                    ) AS mc ON ee.COD_PERIODO = mc.PERIODO
+                    WHERE ESTADO_ALUMNO = '1-Activo' AND NUM_IDENTIFICACION = @NumIdentificacion;";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Agrega parámetros para evitar SQL injection
+                    command.Parameters.AddWithValue("@NumIdentificacion", estudianteActivoRequestDTO.NumIdentificacion);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
                         {
-                            // Mapear las propiedades que deseas devolver en el modelo
-                            NUM_IDENTIFICACION = ee.NUM_IDENTIFICACION,
-                            // Otras propiedades...
-                        };
+                            // Mapea los resultados a tu modelo de EstadisticaEstudiante
+                            estudiante = new EstudianteActivoResponseDTO
+                            {
+                                // Asigna los valores según las columnas de tu consulta
+                                // Por ejemplo:
+                                // NUM_IDENTIFICACION = reader["NUM_IDENTIFICACION"].ToString(),
+                                // Otros campos...
+                                NUM_IDENTIFICACION = reader["NUM_IDENTIFICACION"].ToString(),
+                                NOM_TERCERO = reader["NOM_TERCERO"].ToString(),
+                                SEG_NOMBRE = reader["SEG_NOMBRE"].ToString(),
+                                PRI_APELLIDO = reader["PRI_APELLIDO"].ToString(),
+                                SEG_APELLIDO = reader["SEG_APELLIDO"].ToString(),
+                                DIR_EMAIL_PER = reader["DIR_EMAIL_PER"].ToString(),
+                                DIR_EMAIL = reader["DIR_EMAIL"].ToString(),
+                                ESTADO_ALUMNO = reader["ESTADO_ALUMNO"].ToString(),
 
-            var student = await query.FirstOrDefaultAsync();
-            return student;
+                            };
+                        }
+                    }
+                }
+            }
+            return estudiante;
         }
-
-
-        //public int ObtenerCantidadEstudiantesActivos()
-        //{
-        //    var fechaActual = DateTime.Now.Date;
-
-        //    var cantidadEstudiantesActivos = _context.EstadisticaEstudiantes
-        //        .Join(
-        //            _context.MatrizCalendarios
-        //                .Where(mc => mc.FI_CLASE < fechaActual && mc.FF_CLASE > fechaActual),
-        //            ee => ee.COD_PERIODO,
-        //            mc => mc.PERIODO,
-        //            (ee, mc) => new
-        //            {
-        //                ee.NUM_IDENTIFICACION,
-        //                ee.ESTADO_ALUMNO,
-        //                // Otros campos que necesitas utilizar...
-        //            }
-        //        )
-        //        .Count(ee => ee.ESTADO_ALUMNO == "1-Activo");
-
-        //    return cantidadEstudiantesActivos;
-        //}
-
 
         public int ObtenerCantidadEstudiantesActivosConADO()
         {
