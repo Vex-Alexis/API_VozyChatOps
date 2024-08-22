@@ -74,18 +74,7 @@ La API estará disponible en https://localhost:7000/api/schedule
 
 ## Endpoints
 
-### Validar Estudiante Activo
-- Endpoint: /api/schedule/query
-- Método HTTP: POST
-- Descripción: Endpoint para validar si un estudiante está activo.
-- Cuerpo de la Solicitud: 
-```bash
-{
-    "NUM_IDENTIFICACION" : "1045702044"
-}
-```
-
-### Validar Estudiante Activo
+### Generar horario PDF en BASE64
 - Endpoint: /api/schedule/generate-pdf
 - Método HTTP: POST
 - Descripción: Endpoint para generar el PDF del horario del estudiante en formato BASE64.
@@ -95,6 +84,36 @@ La API estará disponible en https://localhost:7000/api/schedule
     "NUM_IDENTIFICACION" : "1045702044"
 }
 ```
+
+### Validar Estudiante Activo
+- Endpoint: /api/estadisticaestudiante/estudianteActivo
+- Método HTTP: POST
+- Descripción: Este endpoint verifica si un estudiante está activo en el período actual utilizando su identificación.
+- Cuerpo de la Solicitud: 
+```bash
+{
+    "NUM_IDENTIFICACION" : "1045702044"
+}
+```
+
+### Validar Estudiante Activo
+- Endpoint: /api/estadisticaestudiante/cantidad-activos
+- Método HTTP: GET
+- Descripción: Este endpoint devuelve la cantidad de estudiantes activos en el período actual. Devuelve un código 200 con la cantidad.
+- Cuerpo de la Solicitud: N/A
+
+
+### Resetear contraseña
+- Endpoint: /api/resetpassword/email
+- Método HTTP: POST
+- Descripción: Endpoint que permite restablecer la contraseña del correo institucional.
+- Cuerpo de la Solicitud: 
+```bash
+{
+    "Email " : "1045702044"
+}
+```
+
 
 
 
