@@ -84,6 +84,7 @@ La API estará disponible en https://localhost:7000/api/schedule
     "NUM_IDENTIFICACION" : "1045702044"
 }
 ```
+<br> <!-- Salto de línea -->
 
 ### Validar Estudiante Activo
 - Endpoint: /api/estadisticaestudiante/estudianteActivo
@@ -95,13 +96,14 @@ La API estará disponible en https://localhost:7000/api/schedule
     "NUM_IDENTIFICACION" : "1045702044"
 }
 ```
+<br> <!-- Salto de línea -->
 
-### Validar Estudiante Activo
+### Cantidad de estudiantes activos
 - Endpoint: /api/estadisticaestudiante/cantidad-activos
 - Método HTTP: GET
 - Descripción: Este endpoint devuelve la cantidad de estudiantes activos en el período actual. Devuelve un código 200 con la cantidad.
 - Cuerpo de la Solicitud: N/A
-
+<br> <!-- Salto de línea -->
 
 ### Resetear contraseña
 - Endpoint: /api/resetpassword/email
@@ -113,6 +115,7 @@ La API estará disponible en https://localhost:7000/api/schedule
     "Email " : "1045702044"
 }
 ```
+<br> <!-- Salto de línea -->
 
 
 
