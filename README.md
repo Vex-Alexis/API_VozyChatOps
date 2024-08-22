@@ -1,6 +1,17 @@
 # API_VozyChatOps
 
-Este API proporciona funcionalidades para validar la actividad de un estudiante y generar el horario en formato PDF. Utiliza tecnologías modernas como .NET 6.0 y se integra con un servidor SQL Server para gestionar datos de estudiantes y horarios.
+API_VozyChatOps es una API desarrollada en ASP.NET que proporciona un servicio POST especializado para generar PDFs en formato BASE64, representando el horario de estudiantes, el cual puede ser consultado y enviado a través de un bot externo directamente a WhatsApp. Este proyecto está diseñado para integrarse sin problemas con sistemas de automatización de mensajería, ofreciendo una solución eficiente y segura para la distribución de horarios estudiantiles.
+<br> <!-- Salto de línea -->
+
+## Funcionalidades Principales:
+
+- Generación de PDF en BASE64: La API permite convertir los horarios de los estudiantes en un formato PDF codificado en BASE64, utilizando la librería QuestPDF, lo que facilita su transmisión y visualización a través de plataformas de mensajería como WhatsApp.
+
+- Consulta de Estudiantes Activos: Realiza consultas a una base de datos SQL Server utilizando ADO.NET para verificar la actividad de los estudiantes en el periodo académico actual.
+
+- Seguridad: Incluye un sistema de autenticación básico que genera un JWT válido por 24 horas, utilizando claims para asegurar que solo usuarios autenticados puedan acceder a los servicios.
+
+- Integración con Servicios Externos: Consume un servicio externo para restablecer las contraseñas de los correos institucionales de los estudiantes, integrándose así con la infraestructura IT existente.
 <br> <!-- Salto de línea -->
 
 ## Tabla de Contenidos
